@@ -36,7 +36,6 @@ export class InfoPaginaService {
     .subscribe({
       next: resp => {
         this.equipo = resp[this.equipoKey]
-        console.log(this.equipo)
       } 
     })
   }
