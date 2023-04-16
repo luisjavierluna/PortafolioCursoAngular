@@ -11,6 +11,7 @@ export class InfoPaginaService {
   cargada = false
 
   equipo: any[] = []
+  equipoKey: string = 'equipo'
 
   constructor(private http: HttpClient) {
 
@@ -31,11 +32,11 @@ export class InfoPaginaService {
 
   private cargarEquipo() {
     // Leer el archivo JSON
-    this.http.get('https://angular-hml-default-rtdb.firebaseio.com/.json')
+    this.http.get<any>('https://angular-hml-default-rtdb.firebaseio.com/.json')
     .subscribe({
-      next: (resp: any) => {
-        this.equipo = resp
-        console.log(resp)
+      next: resp => {
+        this.equipo = resp[this.equipoKey]
+        console.log(this.equipo)
       } 
     })
   }
