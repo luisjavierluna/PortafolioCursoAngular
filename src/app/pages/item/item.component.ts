@@ -10,6 +10,9 @@ import { ProductosService } from 'src/app/services/productos.service';
 })
 export class ItemComponent implements OnInit {
 
+  producto!: ProductoDescripcion
+  id: string = ""
+
   constructor(
     private route: ActivatedRoute,
     public productosService: ProductosService) { }
@@ -19,9 +22,9 @@ export class ItemComponent implements OnInit {
       .subscribe(parametros => {
         this.productosService.getProducto(parametros['id'])
           .subscribe( (producto: ProductoDescripcion) => {
-
+            this.id = parametros['id']
+            this.producto = producto
             console.log(producto)
-
           })
       })
   }
